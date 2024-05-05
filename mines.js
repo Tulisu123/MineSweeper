@@ -1,6 +1,7 @@
 'use strict'
 
 function putMinesOnBoard(board) {
+    if(gGame.firstClick) return
     var count = gLevel.mines
     while (count > 0) {
         const row = getRandomInt(0, gLevel.size)
@@ -40,7 +41,9 @@ function minesAroundCell(board, cellI, cellJ) {
 function showAllMines(){
     for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[i].length; j++) {
-            displayCell(i,j)
+            if(gBoard[i][j].isMine){
+                displayCell(i,j)
+            }
         }
     }
 }

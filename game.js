@@ -15,15 +15,14 @@ var gGame = {
     shownCount: 0,
     markedCount: 0,
     secsPassed: 0,
-    lives: 3
+    lives: 3,
 }
 
 var gBoard
 
 function onInit() {
-    gGame.isOn = true
-    isHintOn = false
-    gGame.lives = 3
+    setWinningMessage()
+    setGlobalInitVariables()
     setRestartBtnState()
     gBoard = buildBoard()
     renderBoard(gBoard)
@@ -90,12 +89,11 @@ function onCellMarked(elCell, i, j) {
     } else {
         elCell.innerHTML = ''
     }
+    checkVictory()
 }
 
-function onCellClicked(elCell, i, j) {
-    if (!gGame.isOn) return
-    if (gBoard[i][j].isFlagged || gBoard[i][j].isShown) return
-
+function onCellClicked(elCell, i, j) { 
+    if (!gGame.isOn || gBoard[i][j].isFlagged || gBoard[i][j].isShown) return
     if (isHintOn) {
         var neighbors = getNeighbors(i,j)
         neighbors.forEach(cell => displayCell(cell.i, cell.j)) //displays the cells
@@ -123,13 +121,41 @@ function onCellClicked(elCell, i, j) {
     }
     gBoard[i][j].isShown = true
     elCell.classList.add('clicked') //update DOM
+    checkVictory()
 }
 
 function setRestartBtnState() {
     var elRestartBtn = document.querySelector('.restartBtn')
     if (gGame.isOn) {
-        elRestartBtn.style.backgroundImage = 'url(images/smiling.png)'
+        elRestartBtn.style.backgroundImage = 'url(/images/smiling.png)'
     } else {
         elRestartBtn.style.backgroundImage = 'url(images/sad.png)'
     }
+}
+
+function setGlobalInitVariables(){
+    gGame.isOn = true
+    isHintOn = false
+    gGame.lives = 3
+}
+
+function checkVictory(){
+    console.log('checking victory . . .')
+    var victory = false
+    for (let i = 0; i < gBoard.length; i++) {
+        for (let j = 0; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j]
+            if(gGame.lives === 0 || !cell.isShown && !cell.isFlagged || !cell.isMine && cell.isFlagged ){ //if there is no more lives or there is a unshown unflagged cell or there is a flagged cell that is not a mine, not a victory
+               return
+            } 
+        }
+    }
+    victory = true
+    gGame.isOn = false
+    document.querySelector('.winning-message').style.display = 'block' // Show winning message
+    return victory
+}
+
+function setWinningMessage(){
+    document.querySelector('.winning-message').style.display = 'none' // Show winning message
 }

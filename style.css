@@ -1,6 +1,28 @@
 body{
     background-color: grey;
 }
+.winning-message {
+    display: none; /* Initially hide the winning message */
+    position: fixed;
+    top: 50%;
+    font-family: fantasy;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: gold; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeInOut 3s ease-in-out forwards; /* Animation for fading in and out */
+    z-index: 999;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 .board-container {
     margin: 30px auto
 }
@@ -68,7 +90,7 @@ td {
 }
 
 .heart{
-    padding:10px;
+    padding:30px;
     max-width: 50px;
 }
 .hint-clicked{
