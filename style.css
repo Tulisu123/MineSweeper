@@ -68,7 +68,7 @@ td {
     justify-content: center;
 }
 .hint {
-    background-image: url('/images/hint.png');
+    background-image: url('./images/hint.png');
     background-size: cover;
     min-height: 30px;
     min-width: 30px;
