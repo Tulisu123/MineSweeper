@@ -1,7 +1,6 @@
 'use strict'
 
 function putMinesOnBoard(board) {
-    if(gGame.firstClick) return
     var count = gLevel.mines
     while (count > 0) {
         const row = getRandomInt(0, gLevel.size)

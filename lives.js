@@ -11,8 +11,7 @@ function addLives() {
 
 function removeLives() {
     gGame.lives -= 1 //update MODEL
-    console.log('lives left', gGame.lives)
-
+    
     var strHtml = '' //update DOM
     var elHeartContainer = document.querySelector('.heart-container')
     for (let i = 0; i < gGame.lives; i++) {
