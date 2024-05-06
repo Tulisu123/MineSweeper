@@ -3,7 +3,6 @@
 //full expand V | hints V | 
 
 const FLAG = '🚩'
-const MINE = '💣'
 
 var gLevel = {
     size: 4,
@@ -127,9 +126,9 @@ function onCellClicked(elCell, i, j) {
 function setRestartBtnState() {
     var elRestartBtn = document.querySelector('.restartBtn')
     if (gGame.isOn) {
-        elRestartBtn.style.backgroundImage = 'url(/images/smiling.png)'
+        elRestartBtn.style.backgroundImage = 'url(./images/smiling.png)'
     } else {
-        elRestartBtn.style.backgroundImage = 'url(images/sad.png)'
+        elRestartBtn.style.backgroundImage = 'url(./images/sad.png)'
     }
 }
 

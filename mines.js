@@ -1,4 +1,5 @@
 'use strict'
+const MINE = '💣'
 
 function putMinesOnBoard(board) {
     var count = gLevel.mines
