@@ -126,7 +126,7 @@ function onCellClicked(elCell, i, j) {
 function setRestartBtnState() {
     var elRestartBtn = document.querySelector('.restartBtn')
     if (gGame.isOn) {
-        elRestartBtn.style.backgroundImage = 'url(./images/smiling.png)'
+        elRestartBtn.style.backgroundImage = 'url(../images/smiling.png)'
     } else {
         elRestartBtn.style.backgroundImage = 'url(./images/sad.png)'
     }
