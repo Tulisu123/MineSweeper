@@ -68,7 +68,7 @@ td {
     justify-content: center;
 }
 .hint {
-    background-image: url('./images/hint.png');
+    background-image: url('/images/hint.png');
     background-size: cover;
     min-height: 30px;
     min-width: 30px;
@@ -93,9 +93,19 @@ td {
     padding:30px;
     max-width: 50px;
 }
+.safe-cell-clicked{
+    background-color: aqua;
+}
 .hint-clicked{
     background-color: yellow;
     border-radius: 10px;
+}
+
+.safe-click-container{
+    margin:10px auto;
+    display: flex;
+    justify-content: center;
+    width: 60px;
 }
 
 

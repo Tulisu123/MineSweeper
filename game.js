@@ -1,6 +1,6 @@
 'use strict'
 
-//full expand V | hints V | 
+//full expand V | hints V | Safe click V | 
 
 const FLAG = '🚩'
 
@@ -15,6 +15,7 @@ var gGame = {
     markedCount: 0,
     secsPassed: 0,
     lives: 3,
+    safeCellsTries:3
 }
 
 var gBoard
@@ -22,6 +23,7 @@ var gBoard
 function onInit() {
     setWinningMessage()
     setGlobalInitVariables()
+    setSafeCellBtnTreis()
     setRestartBtnState()
     gBoard = buildBoard()
     renderBoard(gBoard)
@@ -126,7 +128,7 @@ function onCellClicked(elCell, i, j) {
 function setRestartBtnState() {
     var elRestartBtn = document.querySelector('.restartBtn')
     if (gGame.isOn) {
-        elRestartBtn.style.backgroundImage = 'url(smiling.png)'
+        elRestartBtn.style.backgroundImage = 'url(./images/smiling.png)'
     } else {
         elRestartBtn.style.backgroundImage = 'url(./images/sad.png)'
     }
@@ -136,6 +138,7 @@ function setGlobalInitVariables(){
     gGame.isOn = true
     isHintOn = false
     gGame.lives = 3
+    gGame.safeCellsTries = 3
 }
 
 function checkVictory(){
