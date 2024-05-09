@@ -58,7 +58,13 @@ td {
     border-radius: 10px;
     
 }
-
+h2{
+    margin-top: 30px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
 .clicked {
     background-color: gray;
 }
@@ -88,7 +94,9 @@ td {
     display: flex;
     justify-content: center;
 }
-
+.dark-mode{
+    background-color: black;
+}
 .heart{
     padding:30px;
     max-width: 50px;

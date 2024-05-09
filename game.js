@@ -1,6 +1,6 @@
 'use strict'
 
-//full expand V | hints V | Safe click V | 
+//full expand V | hints V | Safe click V | Dark mode V | 
 
 const FLAG = '🚩'
 
@@ -15,7 +15,8 @@ var gGame = {
     markedCount: 0,
     secsPassed: 0,
     lives: 3,
-    safeCellsTries:3
+    safeCellsTries: 3,
+    isDarkMode: false
 }
 
 var gBoard
@@ -93,17 +94,17 @@ function onCellMarked(elCell, i, j) {
     checkVictory()
 }
 
-function onCellClicked(elCell, i, j) { 
+function onCellClicked(elCell, i, j) {
     if (!gGame.isOn || gBoard[i][j].isFlagged || gBoard[i][j].isShown) return
     if (isHintOn) {
-        var neighbors = getNeighbors(i,j)
+        var neighbors = getNeighbors(i, j)
         neighbors.forEach(cell => displayCell(cell.i, cell.j)) //displays the cells
-       
-         setTimeout(() => {
-            isHintOn =false
-            neighbors.forEach(cell => closeCell(cell.i,cell.j)) //closes the cells
+
+        setTimeout(() => {
+            isHintOn = false
+            neighbors.forEach(cell => closeCell(cell.i, cell.j)) //closes the cells
             clickedHintButton.remove(); //finds the desired element to remove (clickedHintButton) and removes it from the DOM
-         },1000)
+        }, 1000)
     }
 
     if (gBoard[i][j].isMine) {
@@ -134,22 +135,22 @@ function setRestartBtnState() {
     }
 }
 
-function setGlobalInitVariables(){
+function setGlobalInitVariables() {
     gGame.isOn = true
     isHintOn = false
     gGame.lives = 3
     gGame.safeCellsTries = 3
 }
 
-function checkVictory(){
+function checkVictory() {
     console.log('checking victory . . .')
     var victory = false
     for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[i].length; j++) {
             var cell = gBoard[i][j]
-            if(gGame.lives === 0 || !cell.isShown && !cell.isFlagged || !cell.isMine && cell.isFlagged ){ //if there is no more lives or there is a unshown unflagged cell or there is a flagged cell that is not a mine, not a victory
-               return
-            } 
+            if (gGame.lives === 0 || !cell.isShown && !cell.isFlagged || !cell.isMine && cell.isFlagged) { //if there is no more lives or there is a unshown unflagged cell or there is a flagged cell that is not a mine, not a victory
+                return
+            }
         }
     }
     victory = true
@@ -158,6 +159,21 @@ function checkVictory(){
     return victory
 }
 
-function setWinningMessage(){
+function setWinningMessage() {
     document.querySelector('.winning-message').style.display = 'none' // Show winning message
+}
+
+function toggleDarkMode() {
+    var elBody = document.querySelector('body')
+    var elHeartContainer = document.querySelector('.heart-container')
+    gGame.isDarkMode = !gGame.isDarkMode
+    if (gGame.isDarkMode) {
+        elBody.style.backgroundColor = 'black'
+        elHeartContainer.style.backgroundColor = 'grey'
+        elHeartContainer.style.borderRadius = '40px'
+    } else {
+        elBody.style.backgroundColor = 'grey'
+        elHeartContainer.style.backgroundColor = 'grey'
+    }
+
 }
